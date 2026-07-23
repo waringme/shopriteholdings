@@ -237,6 +237,13 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 
+  // Shrink the logo into the nav bar once the page is scrolled.
+  const applyScrolled = () => {
+    navWrapper.classList.toggle('is-scrolled', window.scrollY > 10);
+  };
+  applyScrolled();
+  window.addEventListener('scroll', applyScrolled, { passive: true });
+
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
   }
