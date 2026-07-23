@@ -33,11 +33,21 @@ header nav[aria-expanded='true'] {
 @media (width >= 900px) {
   header nav {
     display: flex;
-    justify-content: space-between;
-    gap: 0 32px;
-    max-width: 1264px;
-    padding: 0 32px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0 40px;
+    max-width: none;
+    padding: 0 40px 0 0;
     position: relative;
+  }
+
+  /* logo hard to the left; nav items follow, search icon pushed to the right */
+  header nav .nav-brand {
+    margin-right: 8px;
+  }
+
+  header nav .nav-tools {
+    margin-left: auto;
   }
 
   header nav[aria-expanded='true'] {
@@ -188,6 +198,7 @@ header nav .nav-sections ul > li > ul > li {
     display: block;
     visibility: visible;
     white-space: nowrap;
+    position: relative;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
@@ -217,10 +228,20 @@ header nav .nav-sections ul > li > ul > li {
     margin: 0;
   }
 
-  /* top-level nav items */
+  /* wrapper stays static so the megamenu panel anchors to .nav-sections */
+  header nav .nav-sections .default-content-wrapper,
+  header nav .nav-sections .default-content-wrapper > ul {
+    position: static;
+  }
+
+  /* top-level nav items — full nav-height & relative so the red accent bar
+     can sit at the very top of the nav bar, above the item */
   header nav .nav-sections .default-content-wrapper > ul > li {
     flex: 0 1 auto;
-    position: static;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: var(--nav-height);
     font-weight: 700;
     text-transform: none;
     color: var(--text-color);
@@ -258,21 +279,21 @@ header nav .nav-sections ul > li > ul > li {
     display: inline;
   }
 
-  /* red underline accent on the active/hovered top-level item */
-  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop::before {
+  /* red accent bar at the very top of the nav bar, above the active/hovered item */
+  header nav .nav-sections .default-content-wrapper > ul > li::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 40px;
+    right: 0;
     height: 4px;
     background-color: var(--brand-red);
     opacity: 0;
     transition: opacity 0.15s;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop:hover::before,
-  header nav .nav-sections .default-content-wrapper > ul > li.nav-drop[aria-expanded='true']::before {
+  header nav .nav-sections .default-content-wrapper > ul > li:hover::before,
+  header nav .nav-sections .default-content-wrapper > ul > li[aria-expanded='true']::before {
     opacity: 1;
   }
 
@@ -287,12 +308,14 @@ header nav .nav-sections ul > li > ul > li {
     grid-template-columns: repeat(2, minmax(200px, 260px));
     gap: 20px 56px;
     justify-content: start;
-    position: absolute;
+
+    /* full-viewport-width panel anchored to the bottom of the fixed nav bar */
+    position: fixed;
     left: 0;
     right: 0;
-    top: 100%;
+    top: var(--nav-height);
     margin: 0;
-    padding: 32px 0 40px;
+    padding: 32px 40px 40px;
     background-color: var(--background-color);
     box-shadow: 0 12px 24px rgb(0 0 0 / 12%);
     white-space: normal;
