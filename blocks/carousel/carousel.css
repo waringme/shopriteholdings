@@ -151,15 +151,31 @@
   overflow: visible;
 }
 
-.carousel .carousel-slide .carousel-slide-content p:last-child a {
+.carousel .carousel-slide .carousel-slide-content p:last-child a,
+.carousel .carousel-slide .carousel-slide-content p:last-child a.button:any-link {
+  /* reset EDS auto-button (link-alone-in-paragraph becomes a red pill) */
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
   color: var(--brand-red);
   font-weight: 700;
   font-size: var(--body-font-size-xs);
+  line-height: 1.25;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  white-space: normal;
+}
+
+.carousel .carousel-slide .carousel-slide-content p:last-child a:hover,
+.carousel .carousel-slide .carousel-slide-content p:last-child a.button:hover {
+  background: none;
+  color: var(--brand-red-dark);
+  text-decoration: none;
 }
 
 .carousel .carousel-slide .carousel-slide-content p:last-child a::after {
