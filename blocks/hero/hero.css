@@ -5,20 +5,35 @@
 
 .hero {
   position: relative;
+  display: flex;
+  align-items: flex-end;
   padding: 40px 24px;
-  min-height: 300px;
+  min-height: 360px;
+  overflow: hidden;
+}
+
+/* dark gradient overlay for headline legibility over the photo */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgb(0 0 0 / 10%) 0%, rgb(0 0 0 / 15%) 45%, rgb(0 0 0 / 70%) 100%);
 }
 
 .hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
+  max-width: var(--content-max-width);
+  width: 100%;
+  margin: 0 auto;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.15;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 35%);
 }
 
 .hero picture {
   position: absolute;
-  z-index: -1;
+  z-index: -2;
   inset: 0;
   object-fit: cover;
   box-sizing: border-box;
@@ -32,6 +47,7 @@
 
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    padding: 56px 32px;
+    min-height: 480px;
   }
 }

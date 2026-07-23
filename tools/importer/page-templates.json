@@ -1,0 +1,64 @@
+{
+  "metadata": {
+    "projectType": "xwalk"
+  },
+  "templates": [
+    {
+      "name": "newsroom-article",
+      "urls": [
+        "https://www.shopriteholdings.co.za/newsroom/2026/essence-hair-care.html"
+      ],
+      "representativeUrl": "https://www.shopriteholdings.co.za/newsroom/2026/essence-hair-care.html",
+      "coverageGaps": [],
+      "description": "Newsroom article page with hero, article body, pull quote, video embed, related-articles carousel, and page metadata",
+      "blocks": [
+        {
+          "name": "hero",
+          "instances": [".banner-v2"]
+        },
+        {
+          "name": "quote",
+          "instances": [".cmp-text--quote"]
+        },
+        {
+          "name": "embed",
+          "instances": [".embed .cmp-embed", ".cmp-embed"]
+        },
+        {
+          "name": "carousel",
+          "instances": [".generic-slider", ".cmp-generic-slider"]
+        },
+        {
+          "name": "metadata",
+          "instances": ["head"]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero banner",
+          "selector": ".banner-v2",
+          "style": null,
+          "blocks": ["hero"],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Article body",
+          "selector": [".cmp-container article", ".container"],
+          "style": null,
+          "blocks": ["quote", "embed", "carousel"],
+          "defaultContent": ["p", "h2", "a"]
+        },
+        {
+          "id": "section-3",
+          "name": "Page metadata",
+          "selector": "head",
+          "style": null,
+          "blocks": ["metadata"],
+          "defaultContent": []
+        }
+      ]
+    }
+  ]
+}

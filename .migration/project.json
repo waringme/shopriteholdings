@@ -1,0 +1,10 @@
+{
+  "type": "xwalk",
+  "sites": {
+    "shopriteholdings": {
+      "previewOrg": "waringme",
+      "previewSite": "shopriteholdings",
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json"
+    }
+  }
+}

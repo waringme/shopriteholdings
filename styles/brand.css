@@ -1,0 +1,26 @@
+/*
+ * Shoprite Holdings brand tokens.
+ * Reconstructed from the source page screenshot (live site unreachable — CloudFront 403),
+ * so values are a close visual approximation rather than exact computed styles.
+ */
+:root {
+  /* fonts — source uses a humanist sans-serif; system stack used as the live webfont is unreachable */
+  --body-font-family: "Helvetica Neue", arial, "Segoe UI", roboto, sans-serif;
+  --heading-font-family: "Helvetica Neue", arial, "Segoe UI", roboto, sans-serif;
+
+  /* colors */
+  --background-color: #fff;
+  --light-color: #f4f4f4;
+  --dark-color: #1a1a1a;
+  --text-color: #1a1a1a;
+  --brand-red: #e2231a;
+  --brand-red-dark: #b81c14;
+  --link-color: #e2231a;
+  --link-hover-color: #b81c14;
+  --muted-text-color: #6b6b6b;
+  --border-color: #e2e2e2;
+
+  /* spacing */
+  --section-padding: 40px;
+  --content-max-width: 1200px;
+}
