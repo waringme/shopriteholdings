@@ -231,6 +231,33 @@ header nav .nav-sections ul > li > ul > li {
     color: var(--brand-red);
   }
 
+  /* top-level links: EDS auto-buttons a lone link in a paragraph into a red pill;
+     reset them to plain bold text like the reference nav */
+  header nav .nav-sections .default-content-wrapper > ul > li > p .button,
+  header nav .nav-sections .default-content-wrapper > ul > li > p a.button:any-link {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: none;
+    color: inherit;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > p .button:hover,
+  header nav .nav-sections .default-content-wrapper > ul > li > p a.button:hover {
+    background: none;
+    color: var(--brand-red);
+    text-decoration: none;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li > p .button-container,
+  header nav .nav-sections .default-content-wrapper > ul > li > p.button-container {
+    margin: 0;
+    display: inline;
+  }
+
   /* red underline accent on the active/hovered top-level item */
   header nav .nav-sections .default-content-wrapper > ul > li.nav-drop::before {
     content: '';
