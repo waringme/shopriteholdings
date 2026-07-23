@@ -30,13 +30,30 @@ export default function parse(element, { document }) {
     // Build the rich-text content for the slide.
     const content = [];
 
-    // Category / date line (e.g. "Brand News | Jul 19, 2026")
+    // Category / date line (e.g. "Brand News | Jul 19, 2026").
+    // The category (.category-selected) is emphasised as the brand colour and the
+    // date is rendered as plain text; wrap the category in <strong> so the block
+    // CSS can colour it distinctly from the date.
     const tags = slide.querySelector('.post-tags');
     if (tags) {
-      const tagText = tags.textContent.replace(/\s+/g, ' ').trim();
-      if (tagText) {
+      const category = tags.querySelector('.category-selected');
+      const categoryText = category ? category.textContent.replace(/\s+/g, ' ').trim() : '';
+      const fullText = tags.textContent.replace(/\s+/g, ' ').trim();
+      // Everything after the category (drop a leading separator like "|").
+      let dateText = fullText;
+      if (categoryText && fullText.startsWith(categoryText)) {
+        dateText = fullText.slice(categoryText.length).replace(/^\s*\|\s*/, '').trim();
+      }
+      if (categoryText || dateText) {
         const tagP = document.createElement('p');
-        tagP.textContent = tagText;
+        if (categoryText) {
+          const strong = document.createElement('strong');
+          strong.textContent = categoryText;
+          tagP.appendChild(strong);
+        }
+        if (dateText) {
+          tagP.appendChild(document.createTextNode(`${categoryText ? ' | ' : ''}${dateText}`));
+        }
         content.push(tagP);
       }
     }

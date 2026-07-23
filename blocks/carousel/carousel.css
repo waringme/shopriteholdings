@@ -41,9 +41,9 @@
   position: relative;
   width: 100%;
   min-height: 0;
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  background: none;
+  border: 0;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -51,7 +51,7 @@
 .carousel .carousel-slide .carousel-slide-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
 }
 
 .carousel .carousel-slide .carousel-slide-image picture {
@@ -69,7 +69,7 @@
 .carousel .carousel-slide .carousel-slide-content {
   z-index: 1;
   margin: 0;
-  padding: 16px 18px 20px;
+  padding: 18px 2px 22px;
   color: var(--text-color);
   background: none;
   position: relative;
@@ -80,26 +80,53 @@
 }
 
 .carousel .carousel-slide .carousel-slide-content p {
+  margin: 0 0 16px;
   font-size: var(--body-font-size-s);
-  line-height: 1.5;
+  line-height: 1.55;
+  color: var(--muted-text-color);
+
+  /* clamp the summary paragraph like the reference */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  overflow: hidden;
 }
 
-/* first paragraph = red category / date line */
+/* first paragraph = category / date line: date dark, category red via <strong> */
 .carousel .carousel-slide .carousel-slide-content > p:first-child {
-  margin-top: 0;
-  color: var(--brand-red);
+  margin: 0 0 14px;
+  color: var(--text-color);
   font-size: var(--body-font-size-xs);
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  display: block;
+  -webkit-line-clamp: none;
+  line-clamp: none;
+  overflow: visible;
+}
+
+.carousel .carousel-slide .carousel-slide-content > p:first-child strong {
+  color: var(--brand-red);
+  font-weight: 700;
 }
 
 .carousel .carousel-slide .carousel-slide-content h2,
 .carousel .carousel-slide .carousel-slide-content h3,
 .carousel .carousel-slide .carousel-slide-content h4 {
-  margin: 6px 0 8px;
-  font-size: var(--heading-font-size-s);
+  margin: 0 0 12px;
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
   line-height: 1.25;
+  color: var(--text-color);
+
+  /* clamp headline to 2 lines like the reference */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
 }
 
 .carousel .carousel-slide .carousel-slide-content :is(h2, h3, h4) a {
@@ -111,18 +138,34 @@
   text-decoration: none;
 }
 
-/* READ MORE link pinned to the bottom of the card */
+/* READ MORE link pinned to the bottom of the card, with a trailing arrow */
 .carousel .carousel-slide .carousel-slide-content p:last-child {
   margin-top: auto;
-  padding-top: 10px;
+  margin-bottom: 0;
+  padding-top: 6px;
+
+  /* the read-more line must never be clamped/truncated */
+  display: block;
+  -webkit-line-clamp: none;
+  line-clamp: none;
+  overflow: visible;
 }
 
 .carousel .carousel-slide .carousel-slide-content p:last-child a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   color: var(--brand-red);
   font-weight: 700;
   font-size: var(--body-font-size-xs);
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+}
+
+.carousel .carousel-slide .carousel-slide-content p:last-child a::after {
+  content: "→";
+  font-size: 1.1em;
+  line-height: 1;
 }
 
 .carousel .carousel-slide-indicators {

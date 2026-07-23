@@ -139,10 +139,23 @@ var CustomImportScript = (() => {
       const content = [];
       const tags = slide.querySelector(".post-tags");
       if (tags) {
-        const tagText = tags.textContent.replace(/\s+/g, " ").trim();
-        if (tagText) {
+        const category = tags.querySelector(".category-selected");
+        const categoryText = category ? category.textContent.replace(/\s+/g, " ").trim() : "";
+        const fullText = tags.textContent.replace(/\s+/g, " ").trim();
+        let dateText = fullText;
+        if (categoryText && fullText.startsWith(categoryText)) {
+          dateText = fullText.slice(categoryText.length).replace(/^\s*\|\s*/, "").trim();
+        }
+        if (categoryText || dateText) {
           const tagP = document.createElement("p");
-          tagP.textContent = tagText;
+          if (categoryText) {
+            const strong = document.createElement("strong");
+            strong.textContent = categoryText;
+            tagP.appendChild(strong);
+          }
+          if (dateText) {
+            tagP.appendChild(document.createTextNode(`${categoryText ? " | " : ""}${dateText}`));
+          }
           content.push(tagP);
         }
       }
