@@ -219,6 +219,35 @@ button.secondary {
   color: var(--text-color);
 }
 
+/* Bold inline links in article body (e.g. "PRESS KIT") are auto-buttoned by EDS
+   into a red pill. In default content, render them as a plain bold red text link,
+   left-aligned, matching the original page. Scoped to strong-wrapped buttons so
+   real CTA buttons are unaffected. */
+main .default-content-wrapper p.button-container:has(> strong > a.button) {
+  text-align: left;
+  margin: 0.8em 0 0.25em;
+}
+
+main .default-content-wrapper strong > a.button:any-link {
+  display: inline;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: none;
+  color: var(--link-color);
+  font-weight: 700;
+  white-space: normal;
+  text-overflow: clip;
+  text-decoration: none;
+}
+
+main .default-content-wrapper strong > a.button:hover {
+  background: none;
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
 main img {
   max-width: 100%;
   width: auto;
