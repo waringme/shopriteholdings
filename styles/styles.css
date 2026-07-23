@@ -220,16 +220,18 @@ button.secondary {
 }
 
 /* Bold inline links in article body (e.g. "PRESS KIT") are auto-buttoned by EDS
-   into a red pill. In default content, render them as a plain bold red text link,
-   left-aligned, matching the original page. Scoped to strong-wrapped buttons so
-   real CTA buttons are unaffected. */
+   into a red pill. In default content, render them as a plain bold red text link
+   with a download icon, right-aligned, matching the original page. Scoped to
+   strong-wrapped buttons so real CTA buttons are unaffected. */
 main .default-content-wrapper p.button-container:has(> strong > a.button) {
-  text-align: left;
+  text-align: right;
   margin: 0.8em 0 0.25em;
 }
 
 main .default-content-wrapper strong > a.button:any-link {
-  display: inline;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin: 0;
   border: 0;
   border-radius: 0;
@@ -240,6 +242,16 @@ main .default-content-wrapper strong > a.button:any-link {
   white-space: normal;
   text-overflow: clip;
   text-decoration: none;
+}
+
+/* download icon (inline SVG, tinted to the link colour via mask) */
+main .default-content-wrapper strong > a.button:any-link::after {
+  content: "";
+  width: 1em;
+  height: 1em;
+  flex: none;
+  background-color: currentcolor;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 3v10m0 0l-4-4m4 4l4-4M5 19h14" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center / contain;
 }
 
 main .default-content-wrapper strong > a.button:hover {
