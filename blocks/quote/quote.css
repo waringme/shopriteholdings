@@ -3,6 +3,7 @@
   padding: 8px 0 8px 28px;
   max-width: 900px;
   border-left: 4px solid var(--brand-red);
+ // background-color: var(--brand-red);
 }
 
 @media (width >= 900px) {
